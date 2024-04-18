@@ -1,51 +1,12 @@
-import axios from 'axios';
+
 import { useState, useEffect } from "react";
+
 const SearchAutoComplete = () => {
   const [data, setData] = useState([]);
   const [filterdata, setFilterdata] = useState([]);
   const [inputvalue, setInputvalue] = useState("");
 
-  const [apiData,setApiData] = useState([])
-
   
-    // Array of 10 objects
-   
-    // Iterate over the array of objects
-    useEffect(()=>{
-      const products = [
-        {
-          "id":21,
-          title: 'Iphone',
-          price: 20,
-          description: 'new Iphone',
-          image: 'https://i.pravatar.cc',
-          category: 'electronic'
-        },
-        // Add more objects here as needed
-        {
-          "id":22,
-          title: 'Product Title',
-          price: 30,
-          description: 'Product Description',
-          image: 'Product Image URL',
-          category: 'Product Category'
-        },
-        // Repeat for each additional object
-      ];
-    
-      products.forEach(product => {
-        axios.post('https://fakestoreapi.com/products', product)
-          .then((data) => {
-         
-            // Handle successful response
-            setApiData([data.data,...apiData]); // Assuming setApiData is updating an array state
-          })
-          .catch(error => {
-            // Handle error
-            console.log('Error:', error);
-          });
-      });
-    },[])
   
 
   
@@ -69,7 +30,7 @@ const SearchAutoComplete = () => {
     setInputvalue(value);
 
     const res = filterdata.filter((data) =>
-      data.country.toLowerCase().includes(value.toLowerCase())
+        data.country.toLowerCase().includes(value.toLowerCase())
     );
     setData(res);
   };
